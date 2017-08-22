@@ -1537,7 +1537,7 @@ class Motor_Page(tk.Frame):
             motor.write("SK") #this command kills the motor and can be sent to cancel a motor rotation
                
         b_rotate = ttk.Button(self, text="Rotate",command=f_rotate_motor)        
-        b_cancel=b_rotate = ttk.Button(self, text="Cancel Rotation",command=f_cancel_rotate)
+        b_cancel = ttk.Button(self, text="Cancel Rotation",command=f_cancel_rotate)
 
 
         
