@@ -68,7 +68,7 @@ dev_angle="ND"
 direction=1
 
 # default numbers for setting menu
-dfts=[500,0.30,150,5,0.2,0,0,7.068e-6,1,25]
+dfts=[314.7,0.30,150,5,0.2,0,0,7.068e-6,1,25]
 #Number of turns of coil(number here is just a guess), radius of coil (m), 
 #number of readings in sine fit, interval between readings in ms
 #(actual time interval varies a lot from time set here: depends greatly on
@@ -121,7 +121,7 @@ def f_keithley_get_ready(argu1,argu2):
 #It takes two arguments.  THe first being the number of readings (argu1) and
 # the second being the time interval between them in ms (argu2)  
     keithley.write("status:measurement:enable 512; *sre 1") #the commands here come from [2] and [4]
-    keithley.write("sense:voltage:range 0.3") #voltage range
+    keithley.write("sense:voltage:range 0.5") #voltage range
     keithley.write("system:azero:state off") #turning autozero off increases the rate of sampling
     keithley.write("sense:voltage:dc:nplc 1") #the number following "nplc" dictates the integration time =number/50Hz e.g. =1/50=20ms
     keithley.write("sample:count %d" % argu1) #number of readings to take
@@ -1188,16 +1188,16 @@ class Settings_Page(tk.Frame):
                 tkMessageBox.showwarning("Coil Radius Warning",
         "The radius of the coil should be a number.")
 
-#The number of turns of the coil should be an integer greater than zero           
+#The number of turns of the coil should be greater than zero           
 
             try:
-                val=int(E_turns.get())
-                if int(E_turns.get())>0:
+                val=float(E_turns.get())
+                if float(E_turns.get())>0:
                     settings[0]= E_turns.get()
                 else:
                     fail=1
                     tkMessageBox.showwarning("Number of Turns Warning",
-        "The number of turns must be a positive integer")   
+        "The number of turns must be a positive number")   
             except:
                 fail=1
                 tkMessageBox.showwarning("Number of Turns Warning",
